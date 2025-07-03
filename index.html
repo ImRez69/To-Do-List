@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body id="body" class="body">
+
+
+  <header id="title">
+    <svg class="icon" id="to-do-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        d="M22 2v20h-20v-20h20zm2-2h-24v24h24v-24zm-4 7h-8v1h8v-1zm0 5h-8v1h8v-1zm0 5h-8v1h8v-1zm-10.516-11.304l-.71-.696-2.553 2.607-1.539-1.452-.698.71 2.25 2.135 3.25-3.304zm0 5l-.71-.696-2.552 2.607-1.539-1.452-.698.709 2.249 2.136 3.25-3.304zm0 5l-.71-.696-2.552 2.607-1.539-1.452-.698.709 2.249 2.136 3.25-3.304z" />
+    </svg>
+    <h3>To Do List</h3>
+
+  </header>
+
+  <main>
+
+    <article id="to-do-option">
+
+      <div id="item-div">
+
+        <form id="item-form">
+          <label for="form-input">Enter Item</label>
+          <input type="text" id="form-input">
+          <button type="submit" id="add-item-btn">
+            <svg class="icon" id="add-item-btn-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+              stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+                fill-rule="nonzero" />
+            </svg>
+            Add Item
+          </button>
+        </form>
+        <input type="text" id="filter-item" placeholder="Filter Item">
+      </div>
+
+    </article>
+
+    <section>
+
+      <ul id="items-list">
+
+        <li class="list-item">
+          <span>An Item</span>
+          <svg class="icon add-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+              fill-rule="nonzero" />
+          </svg>
+        </li>
+
+        <li class="list-item">
+          <span>A Second Item</span>
+          <svg class="icon add-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+              fill-rule="nonzero" />
+          </svg>
+        </li>
+
+        <li class="list-item">
+          <span>A Third Item</span>
+          <svg class="icon add-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+              fill-rule="nonzero" />
+          </svg>
+        </li>
+
+        <li class="list-item">
+          <span>A Fourth Item</span>
+          <svg class="icon add-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+              fill-rule="nonzero" />
+          </svg>
+        </li>
+
+        <li class="list-item">
+          <span>A Fifth Item</span>
+          <svg class="icon add-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
+              fill-rule="nonzero" />
+          </svg>
+        </li>
+
+      </ul>
+
+      <button id="clear-btn">
+        Clear All
+      </button>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
