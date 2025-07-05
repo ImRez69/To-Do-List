@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Poppins;
+  src: local("Poppins-Regular"),
+    url(./Font/Poppins-Regular.ttf) format(truetype);
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,12 +16,13 @@ html {
 }
 
 body {
-  width: 35%;
+  width: clamp(200px, 90%, 500px);
   transition: 200ms;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  font-family: Poppins;
 }
 
 body.dark {
@@ -111,13 +117,13 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16%;
+  width: max(16%, 86px);
   margin: 16px 0px 24px;
   height: 3.5vh;
   border-radius: 4px;
   border: none;
   outline: none;
-  padding: 8px 0px;
+  padding: 14px 0px;
   background-color: #5682a1;
   color: #f5f8fa;
   transition: 200ms linear all;
