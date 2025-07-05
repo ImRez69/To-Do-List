@@ -16,12 +16,10 @@ const toggleTheme = () => {
     themeBtn.innerText = "🌙";
     document.body.classList.replace("light", "dark");
     lightTheme = false;
-    console.log("lighte theme is true");
   } else {
     themeBtn.innerText = "☀️";
+    document.body.classList.replace("dark", "light"); 
     lightTheme = true;
-    document.body.classList.replace("dark", "light");
-    console.log("lighte theme is false");
   }
   localStorage.setItem("Light Theme", `${lightTheme}`);
 };
