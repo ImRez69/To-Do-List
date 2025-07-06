@@ -113,6 +113,24 @@ input::placeholder {
   color: #f5f8fa;
 }
 
+#epmty-input-error {
+  opacity: 0;
+  visibility: hidden;
+  transition: 200ms linear all;
+  height: 0;
+  color: red;
+  padding-top: 8px;
+  margin-bottom: -8px;
+}
+
+#epmty-input-error.show-error {
+  transition: 200ms linear all;
+  visibility: visible;
+  display: inline-block;
+  opacity: 1;
+  height: 4.5vh;
+}
+
 #add-item-btn {
   display: flex;
   justify-content: center;
@@ -195,6 +213,7 @@ section {
   width: 4%;
   transform: rotate(45deg);
   fill: rgb(123, 123, 123);
+  display: inline-block;
 }
 
 .list-item:hover .add-icon {
