@@ -68,3 +68,6 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 }
 itemAction();
+
+const test = ["ali","arash","mehdi","mamad"]
+localStorage.setItem("names",JSON.stringify(test));
