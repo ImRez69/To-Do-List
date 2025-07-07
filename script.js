@@ -62,9 +62,14 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
-    document.querySelectorAll(".remove-icon").forEach((icon) => icon.addEventListener("click", (e) => e.target.parentElement.remove()));
+  document.querySelectorAll(".remove-icon").forEach((icon) => icon.addEventListener("click", (e) => e.target.parentElement.remove()));
+
+  // Change Item
+  const changeItem = (e)=>{
+    console.log(e.target);
+    
+  }
+  document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
+
 }
 itemAction();
-
-// const test = ["ali","arash","mehdi","mamad"]
-// localStorage.setItem("names",JSON.stringify(test));
