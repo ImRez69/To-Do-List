@@ -53,6 +53,7 @@ function itemAction() {
 
     const div = document.createElement("div");
     div.classList.add("remove-icon");
+    div.addEventListener("click", (e) => e.target.parentElement.remove());
     li.appendChild(div);
 
     const itemsList = document.getElementById("items-list");
@@ -61,7 +62,7 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
-  document.querySelectorAll(".remove-icon").forEach((icon) => icon.addEventListener("click", (e) => e.target.parentElement.remove()));
+    document.querySelectorAll(".remove-icon").forEach((icon) => icon.addEventListener("click", (e) => e.target.parentElement.remove()));
 }
 itemAction();
 
