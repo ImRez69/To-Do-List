@@ -53,11 +53,9 @@ function itemAction() {
     };
 
     if (ItemSearch(newItem)) {
-      console.log("Item Existed");
       document.getElementById("duplicate-error").classList.add("show-error");
       return;
     } else {
-      console.log("Item Not Existed");
       document.getElementById("duplicate-error").classList.remove("show-error");
     }
 
@@ -135,13 +133,13 @@ function itemAction() {
   const filterInput = document.getElementById("filter-item")
   const filterItem = filterInput.value;
   const ItemSearch = (e) => {
-      const items = Array.from(document.querySelectorAll("li span")).map(
-        (item) => item.innerText
-      );
-      const ItemFind = items.find((item) => item === e.terget.entries());
-      console.log(e.target.entries());
+    const formData = new FormData(form);
+    const filterInputEntries = formData.get("filter-input");      
+      const items = Array.from(document.querySelectorAll("li span")).map((item) => item.innerText );
+      const ItemFind = items.find((item) => item === filterInputEntries);
+      console.log(ItemFind);
       
-      // return ItemFind;
+
   };
 
   filterInput.addEventListener("keypress",ItemSearch)
