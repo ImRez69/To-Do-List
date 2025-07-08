@@ -79,11 +79,7 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
-  document
-    .querySelectorAll(".remove-icon")
-    .forEach((icon) =>
-      icon.addEventListener("click", (e) => e.target.parentElement.remove())
-    );
+  document.querySelectorAll(".remove-icon").forEach((icon) =>icon.addEventListener("click", (e) => e.target.parentElement.remove()));
 
   // Change Item
   const changeItem = (e) => {
@@ -133,8 +129,31 @@ function itemAction() {
     //   const newItem = formInput.value;
     // };
   };
-
   document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
+
+  // Filter Item
+  const filterInput = document.getElementById("filter-item")
+  const filterItem = filterInput.value;
+  const ItemSearch = (filterItem) => {
+      const items = Array.from(document.querySelectorAll("li span")).map(
+        (item) => item.innerText
+      );
+      const ItemFind = items.find((item) => item === filterItem);
+      return ItemFind;
+  };
+
+  filterInput.addEventListener("keypress",ItemSearch)
+
+
+
+    if (ItemSearch(filterItem)) {
+      console.log("Item Existed");
+      document.getElementById("duplicate-error").classList.add("show-error");
+      return;
+    } else {
+      console.log("Item Not Existed");
+      document.getElementById("duplicate-error").classList.remove("show-error");
+    }
 
   // Clear All
   // const clearAll = document.getElementById("clear-btn");
