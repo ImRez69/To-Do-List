@@ -77,7 +77,11 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
-  document.querySelectorAll(".remove-icon").forEach((icon) =>icon.addEventListener("click", (e) => e.target.parentElement.remove()));
+  document
+    .querySelectorAll(".remove-icon")
+    .forEach((icon) =>
+      icon.addEventListener("click", (e) => e.target.parentElement.remove())
+    );
 
   // Change Item
   const changeItem = (e) => {
@@ -127,22 +131,34 @@ function itemAction() {
     //   const newItem = formInput.value;
     // };
   };
-  document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
+  document
+    .querySelectorAll("li span")
+    .forEach((icon) => icon.addEventListener("click", changeItem));
 
   // Filter Item
-  const filterInput = document.getElementById("filter-item")
+  const filterInput = document.getElementById("filter-item");
   const filterItem = filterInput.value;
   const ItemSearch = (e) => {
     const formData = new FormData(form);
-    const filterInputEntries = formData.get("filter-input");      
-      const items = Array.from(document.querySelectorAll("li span")).map((item) => item.innerText );
-      const ItemFind = items.find((item) => item === filterInputEntries);
-      console.log(ItemFind);
-      
+    const filterInputEntries = formData.get("filter-input");
+    const items = Array.from(document.querySelectorAll("li span")).map(
+      (item) => item.innerText
+    );
+    const ItemFind = items.find((item) => item === filterInputEntries);
+    // console.log(ItemFind);
+    console.log(items);
 
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      for (let letter = 0; letter < item.length; letter++) {
+        const itemLetter = item[letter];
+        console.log(itemLetter);
+        
+      }
+    }
   };
 
-  filterInput.addEventListener("keypress",ItemSearch)
+  filterInput.addEventListener("keypress", ItemSearch);
 
   // Clear All
   // const clearAll = document.getElementById("clear-btn");
