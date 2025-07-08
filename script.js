@@ -44,6 +44,23 @@ function itemAction() {
         .classList.remove("show-error");
     }
 
+    const ItemSearch = (ItemSearch) => {
+      const items = Array.from(document.querySelectorAll("li span")).map(
+        (item) => item.innerText
+      );
+      const ItemFind = items.find((item) => item === ItemSearch);
+      return ItemFind;
+    };
+
+    if (ItemSearch(newItem)) {
+      console.log("Item Existed");
+      document.getElementById("duplicate-error").classList.add("show-error");
+      return;
+    } else {
+      console.log("Item Not Existed");
+      document.getElementById("duplicate-error").classList.remove("show-error");
+    }
+
     const li = document.createElement("li");
     li.classList.add("list-item");
 
@@ -62,14 +79,65 @@ function itemAction() {
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
-  document.querySelectorAll(".remove-icon").forEach((icon) => icon.addEventListener("click", (e) => e.target.parentElement.remove()));
+  document
+    .querySelectorAll(".remove-icon")
+    .forEach((icon) =>
+      icon.addEventListener("click", (e) => e.target.parentElement.remove())
+    );
 
   // Change Item
-  const changeItem = (e)=>{
-    console.log(e.target);
-    
-  }
+  const changeItem = (e) => {
+    const itemClicked = e.target;
+    document
+      .querySelectorAll("li")
+      .forEach((li) => li.classList.add("edit-mode"));
+    document.getElementById("filter-item").classList.add("edit-mode");
+    document.getElementById("clear-btn").classList.add("edit-mode");
+
+    const updateBtn = document.getElementById("add-item-btn");
+    const addBtnInnerHTML = updateBtn.innerHTML;
+    updateBtn.style.backgroundColor = "#779eb9";
+    updateBtn.innerText = "✏️ Update";
+
+    const formInput = document.getElementById("form-input");
+    formInput.value = itemClicked.innerText;
+    formInput.focus();
+
+    itemForm.removeEventListener("submit", addItem);
+
+    document.getElementById("add-item-btn").addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+
+        document
+          .querySelectorAll("li")
+          .forEach((li) => li.classList.remove("edit-mode"));
+        document.getElementById("filter-item").classList.remove("edit-mode");
+        document.getElementById("clear-btn").classList.remove("edit-mode");
+
+        updateBtn.classList.add("update-item");
+        updateBtn.style.backgroundColor = "#779eb9";
+        updateBtn.innerHTML = addBtnInnerHTML;
+        itemClicked.innerText = formInput.value;
+
+        formInput.value = "";
+      },
+      { once: true }
+    );
+
+    itemForm.addEventListener("submit", addItem);
+
+    //   const addItem = (e) => {
+    //   e.preventDefault();
+    //   const newItem = formInput.value;
+    // };
+  };
+
   document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
 
+  // Clear All
+  // const clearAll = document.getElementById("clear-btn");
+  // clearAll.addEventListener("click");
 }
 itemAction();
