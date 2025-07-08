@@ -136,32 +136,32 @@ function itemAction() {
     .forEach((icon) => icon.addEventListener("click", changeItem));
 
   // Filter Item
-  const filterInput = document.getElementById("filter-item");
-  const filterItem = filterInput.value;
-  const ItemSearch = (e) => {
-    const formData = new FormData(form);
-    const filterInputEntries = formData.get("filter-input");
-    const items = Array.from(document.querySelectorAll("li span")).map(
-      (item) => item.innerText
-    );
-    const ItemFind = items.find((item) => item === filterInputEntries);
-    // console.log(ItemFind);
-    console.log(items);
+  // const filterInput = document.getElementById("filter-item");
+  // const filterItem = filterInput.value;
+  // const ItemSearch = (e) => {
+  //   const formData = new FormData(form);
+  //   const filterInputEntries = formData.get("filter-input");
+  //   const items = Array.from(document.querySelectorAll("li span")).map(
+  //     (item) => item.innerText
+  //   );
+  //   const ItemFind = items.find((item) => item === filterInputEntries);
+  //   // console.log(ItemFind);
+  //   console.log(items);
 
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      for (let letter = 0; letter < item.length; letter++) {
-        const itemLetter = item[letter];
-        console.log(itemLetter);
-        
-      }
-    }
-  };
+  //   for (let i = 0; i < items.length; i++) {
+  //     const item = items[i];
+  //     for (let letter = 0; letter < item.length; letter++) {
+  //       const itemLetter = item[letter];
+  //       console.log(itemLetter);
 
-  filterInput.addEventListener("keypress", ItemSearch);
+  //     }
+  //   }
+  // };
+
+  // filterInput.addEventListener("keypress", ItemSearch);
 
   // Clear All
-  // const clearAll = document.getElementById("clear-btn");
-  // clearAll.addEventListener("click");
+  document.getElementById("clear-btn").addEventListener("click", ()=> document.querySelectorAll("li").forEach((li) => li.remove()));  
 }
+
 itemAction();
