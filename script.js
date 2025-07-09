@@ -94,6 +94,7 @@ function itemAction() {
 
     const span = document.createElement("span");
     span.innerText = newItem;
+    span.addEventListener("click", changeItem);
     li.appendChild(span);
 
     const div = document.createElement("div");
@@ -103,6 +104,8 @@ function itemAction() {
 
     const itemsList = document.getElementById("items-list");
     itemsList.appendChild(li);
+
+    formInput.value = "";
 
     localStorageItems.push(newItem);
     localStorage.setItem("items", JSON.stringify(localStorageItems));
@@ -114,9 +117,12 @@ function itemAction() {
   document.querySelectorAll(".remove-icon").forEach((icon) =>
     icon.addEventListener("click", (e) => {
       e.target.parentElement.remove();
-      const targetValue = e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind =localStorageItems.find((value)=> value === targetValue);
-      localStorageItems.splice(localStorageItems.indexOf(targetValueFind),1)
+      const targetValue =
+        e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find(
+        (value) => value === targetValue
+      );
+      localStorageItems.splice(localStorageItems.indexOf(targetValueFind), 1);
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
@@ -124,7 +130,9 @@ function itemAction() {
   // Change Item
   const changeItem = (e) => {
     const itemClicked = e.target;
-    document.querySelectorAll("li").forEach((li) => li.classList.add("edit-mode"));
+    document
+      .querySelectorAll("li")
+      .forEach((li) => li.classList.add("edit-mode"));
     document.getElementById("filter-item").classList.add("edit-mode");
     document.getElementById("clear-btn").classList.add("edit-mode");
 
@@ -136,8 +144,8 @@ function itemAction() {
     const formInput = document.getElementById("form-input");
     formInput.value = itemClicked.innerText;
     formInput.focus();
-            
-    // const targetValue = e.target.parentElement.querySelector("span").innerText;        
+
+    // const targetValue = e.target.parentElement.querySelector("span").innerText;
     // const targetValueFind = localStorageItems.find((value)=> value === targetValue);
     // localStorageItems.splice(localStorageItems.indexOf(targetValueFind),1)
 
