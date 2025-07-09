@@ -31,27 +31,28 @@ themeBtn.addEventListener(
 function itemAction() {
   // Items From Local Storage
   let localStorageItemsArray = [];
-  if (localStorageItemsArray != "") {
+  let localStorageItems = [];
+  if (localStorage.getItem("items") === null) {
   } else {
     localStorageItemsArray = JSON.parse(localStorage.getItem("items"));
-  }
-  let localStorageItems = localStorageItemsArray;
-  if (localStorageItemsArray.length > 0) {
-    for (let i = 0; i < localStorageItemsArray.length; i++) {
-      const li = document.createElement("li");
-      li.classList.add("list-item");
+    localStorageItems = localStorageItemsArray;
+    if (localStorageItemsArray.length > 0) {
+      for (let i = 0; i < localStorageItemsArray.length; i++) {
+        const li = document.createElement("li");
+        li.classList.add("list-item");
 
-      const span = document.createElement("span");
-      span.innerText = localStorageItemsArray[i];
-      li.appendChild(span);
+        const span = document.createElement("span");
+        span.innerText = localStorageItemsArray[i];
+        li.appendChild(span);
 
-      const div = document.createElement("div");
-      div.classList.add("remove-icon");
-      div.addEventListener("click", (e) => e.target.parentElement.remove());
-      li.appendChild(div);
+        const div = document.createElement("div");
+        div.classList.add("remove-icon");
+        div.addEventListener("click", (e) => e.target.parentElement.remove());
+        li.appendChild(div);
 
-      const itemsList = document.getElementById("items-list");
-      itemsList.appendChild(li);
+        const itemsList = document.getElementById("items-list");
+        itemsList.appendChild(li);
+      }
     }
   }
 
@@ -106,7 +107,7 @@ function itemAction() {
     itemsList.appendChild(li);
 
     formInput.value = "";
-    
+
     // Add Item to Local Storage
     localStorageItems.push(newItem);
     localStorage.setItem("items", JSON.stringify(localStorageItems));
