@@ -216,11 +216,10 @@ function itemAction() {
   // filterInput.addEventListener("keypress", ItemSearch);
 
   // Clear All
-  document
-    .getElementById("clear-btn")
-    .addEventListener("click", () =>
-      document.querySelectorAll("li").forEach((li) => li.remove())
-    );
+  document.getElementById("clear-btn").addEventListener("click", () => {
+    document.querySelectorAll("li").forEach((li) => li.remove());
+    localStorage.removeItem("items")
+  });
 }
 
 itemAction();
