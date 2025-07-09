@@ -114,13 +114,10 @@ function itemAction() {
   document.querySelectorAll(".remove-icon").forEach((icon) =>
     icon.addEventListener("click", (e) => {
       e.target.parentElement.remove();
-      // const targetValue = e.target.parentElement.querySelector("span").innerText;
-      // const tagetValueFind =localStorageItems.find((value)=> value === targetValue);
-      // console.log(localStorageItems);
-      // localStorageItems.spilice(tagetValueFind,0)
-      // console.log(localStorageItems);
-      
-      // console.log(tagetValueFind);
+      const targetValue = e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind =localStorageItems.find((value)=> value === targetValue);
+      localStorageItems.splice(localStorageItems.indexOf(targetValueFind),1)
+      localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
 
