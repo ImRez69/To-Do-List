@@ -100,7 +100,19 @@ function itemAction() {
 
     const div = document.createElement("div");
     div.classList.add("remove-icon");
-    div.addEventListener("click", (e) => e.target.parentElement.remove());
+    div.addEventListener("click", (e) => {
+      e.target.parentElement.remove();
+      
+      // Remove Item From Local Storage & Update Local Storage
+      const targetValue = e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find((value) => value === targetValue);
+      const itemIndex = localStorageItems.indexOf(targetValueFind);
+      console.log(localStorageItems);
+      localStorageItems.splice(itemIndex, 1);
+      console.log(localStorageItems);
+      localStorage.setItem("items", JSON.stringify(localStorageItems));
+    });
+
     li.appendChild(div);
 
     const itemsList = document.getElementById("items-list");
@@ -117,16 +129,18 @@ function itemAction() {
   // Remove Item
   document.querySelectorAll(".remove-icon").forEach((icon) =>
     icon.addEventListener("click", (e) => {
+      console.log("run0");
       e.target.parentElement.remove();
-      const targetValue =
-        e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind = localStorageItems.find(
-        (value) => value === targetValue
-      );
-
+      
+      console.log("run1");
       // Remove Item From Local Storage & Update Local Storage
+      console.log("run2");
+      const targetValue = e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find((value) => value === targetValue);
       const itemIndex = localStorageItems.indexOf(targetValueFind);
+      console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
+      console.log(localStorageItems);
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
@@ -193,23 +207,23 @@ function itemAction() {
   //  --------------------------------------
 
   // Filter Item
-  const filterItem = document.getElementById("filter-item");
+  // const filterItem = document.getElementById("filter-item");
 
-  const ItemSearch = (e) => {
-    const formData = new FormData(form);
-    const filterInputEntries = formData.get("filter-input");
-    const items = Array.from(document.querySelectorAll("li span")).map((item) =>item.innerText.toLowerCase());
+  // const ItemSearch = (e) => {
+  //   const formData = new FormData(form);
+  //   const filterInputEntries = formData.get("filter-input");
+  //   const items = Array.from(document.querySelectorAll("li span")).map((item) =>item.innerText.toLowerCase());
     
-    if (items.includes(filterInputEntries.toLowerCase())) {
+  //   if (items.includes(filterInputEntries.toLowerCase())) {
       
-      const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
-      const itemsElement = Array.from(document.querySelectorAll("li span"));
-      const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
-      console.log(itemFindElement);
-      console.log(items.includes(filterInputEntries.toLowerCase()));
+  //     const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
+  //     const itemsElement = Array.from(document.querySelectorAll("li span"));
+  //     const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
+  //     console.log(itemFindElement);
+  //     console.log(items.includes(filterInputEntries.toLowerCase()));
 
-      itemsElement.forEach((item)=>item.parentElement.style.display = "none")
-      itemFindElement.parentElement.style.display = "flex";
+  //     itemsElement.forEach((item)=>item.parentElement.style.display = "none")
+  //     itemFindElement.parentElement.style.display = "flex";
       
       // for (let i = 0; i < items.length; i++) {
       //   itemFindElement.style.display = "none";
@@ -217,7 +231,7 @@ function itemAction() {
       //     itemFindElement.style.display = "flex";}
       //   }
 
-    }
+    // }
     // else{
     //   const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
     //   const itemsElement = Array.from(document.querySelectorAll("li span"));
@@ -233,9 +247,9 @@ function itemAction() {
     //     console.log(itemLetter);
     //   }
     // }
-  };
+  // };
 
-  filterItem.addEventListener("input", ItemSearch);
+  // filterItem.addEventListener("input", ItemSearch);
 
   //  --------------------------------------
 
@@ -243,6 +257,7 @@ function itemAction() {
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll("li").forEach((li) => li.remove());
     localStorage.removeItem("items");
+    localStorageItems = []
   });
 }
 
