@@ -194,16 +194,37 @@ function itemAction() {
 
   // Filter Item
   const filterItem = document.getElementById("filter-item");
+
   const ItemSearch = (e) => {
     const formData = new FormData(form);
     const filterInputEntries = formData.get("filter-input");
-    console.log(filterInputEntries);
-    const items = Array.from(document.querySelectorAll("li span")).map((item) => item.innerText.toLowerCase());
-    console.log(items.includes(filterInputEntries.toLowerCase()));
+    const items = Array.from(document.querySelectorAll("li span")).map((item) =>item.innerText.toLowerCase());
     
-    if(items.includes(filterInputEntries.toLowerCase())){
-      console.log( items.find( (item) => item == filterInputEntries.toLowerCase() )); 
+    if (items.includes(filterInputEntries.toLowerCase())) {
+      
+      const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
+      const itemsElement = Array.from(document.querySelectorAll("li span"));
+      const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
+      console.log(itemFindElement);
+      console.log(items.includes(filterInputEntries.toLowerCase()));
+
+      itemsElement.forEach((item)=>item.parentElement.style.display = "none")
+      itemFindElement.parentElement.style.display = "flex";
+      
+      // for (let i = 0; i < items.length; i++) {
+      //   itemFindElement.style.display = "none";
+      //   if (items.includes(filterInputEntries.toLowerCase())) {
+      //     itemFindElement.style.display = "flex";}
+      //   }
+
     }
+    // else{
+    //   const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
+    //   const itemsElement = Array.from(document.querySelectorAll("li span"));
+    //   const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
+    //   itemsElement.forEach((item)=>item.parentElement.style.display = "flex")
+      
+    // }
 
     // for (let i = 0; i < items.length; i++) {
     //   const item = items[i];
