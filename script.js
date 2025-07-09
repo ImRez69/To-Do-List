@@ -29,12 +29,42 @@ themeBtn.addEventListener(
 })();
 
 function itemAction() {
+  // Items From Local Storage
+  let localStorageItemsArray = [];
+  if (localStorageItemsArray != "") {
+  } else {
+    localStorageItemsArray = JSON.parse(localStorage.getItem("items"));
+    console.log(localStorageItemsArray);
+  }
+  let localStorageItems = localStorageItemsArray;
+  if (localStorageItemsArray.length > 0) {
+    for (let i = 0; i < localStorageItemsArray.length; i++) {
+      const li = document.createElement("li");
+      li.classList.add("list-item");
+
+      const span = document.createElement("span");
+      span.innerText = localStorageItemsArray[i];
+      li.appendChild(span);
+
+      const div = document.createElement("div");
+      div.classList.add("remove-icon");
+      div.addEventListener("click", (e) => e.target.parentElement.remove());
+      li.appendChild(div);
+
+      const itemsList = document.getElementById("items-list");
+      itemsList.appendChild(li);
+    }
+  }
+
   // Add Item
   const itemForm = document.getElementById("item-form");
   const formInput = document.getElementById("form-input");
+
   const addItem = (e) => {
     e.preventDefault();
     const newItem = formInput.value;
+
+    // Empty Input Check
     if (newItem === "") {
       document.getElementById("epmty-input-error").classList.add("show-error");
       return;
@@ -44,6 +74,7 @@ function itemAction() {
         .classList.remove("show-error");
     }
 
+    // Search Function
     const ItemSearch = (ItemSearch) => {
       const items = Array.from(document.querySelectorAll("li span")).map(
         (item) => item.innerText
@@ -52,6 +83,7 @@ function itemAction() {
       return ItemFind;
     };
 
+    // Duplicate Check
     if (ItemSearch(newItem)) {
       document.getElementById("duplicate-error").classList.add("show-error");
       return;
@@ -73,7 +105,12 @@ function itemAction() {
 
     const itemsList = document.getElementById("items-list");
     itemsList.appendChild(li);
+
+    localStorageItems.push(newItem);
+    localStorage.setItem("items", JSON.stringify(localStorageItems));
+
   };
+
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
@@ -125,11 +162,6 @@ function itemAction() {
     );
 
     itemForm.addEventListener("submit", addItem);
-
-    //   const addItem = (e) => {
-    //   e.preventDefault();
-    //   const newItem = formInput.value;
-    // };
   };
   document
     .querySelectorAll("li span")
@@ -161,7 +193,11 @@ function itemAction() {
   // filterInput.addEventListener("keypress", ItemSearch);
 
   // Clear All
-  document.getElementById("clear-btn").addEventListener("click", ()=> document.querySelectorAll("li").forEach((li) => li.remove()));  
+  document
+    .getElementById("clear-btn")
+    .addEventListener("click", () =>
+      document.querySelectorAll("li").forEach((li) => li.remove())
+    );
 }
 
 itemAction();
