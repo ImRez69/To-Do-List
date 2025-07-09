@@ -124,9 +124,7 @@ function itemAction() {
   // Change Item
   const changeItem = (e) => {
     const itemClicked = e.target;
-    document
-      .querySelectorAll("li")
-      .forEach((li) => li.classList.add("edit-mode"));
+    document.querySelectorAll("li").forEach((li) => li.classList.add("edit-mode"));
     document.getElementById("filter-item").classList.add("edit-mode");
     document.getElementById("clear-btn").classList.add("edit-mode");
 
@@ -138,6 +136,10 @@ function itemAction() {
     const formInput = document.getElementById("form-input");
     formInput.value = itemClicked.innerText;
     formInput.focus();
+            
+    // const targetValue = e.target.parentElement.querySelector("span").innerText;        
+    // const targetValueFind = localStorageItems.find((value)=> value === targetValue);
+    // localStorageItems.splice(localStorageItems.indexOf(targetValueFind),1)
 
     itemForm.removeEventListener("submit", addItem);
 
@@ -156,6 +158,9 @@ function itemAction() {
         updateBtn.style.backgroundColor = "#779eb9";
         updateBtn.innerHTML = addBtnInnerHTML;
         itemClicked.innerText = formInput.value;
+
+        // localStorageItems.push(formInput.value)
+        // localStorage.setItem("items", JSON.stringify(localStorageItems));
 
         formInput.value = "";
       },
