@@ -106,11 +106,11 @@ function itemAction() {
     itemsList.appendChild(li);
 
     formInput.value = "";
-
+    
+    // Add Item to Local Storage
     localStorageItems.push(newItem);
     localStorage.setItem("items", JSON.stringify(localStorageItems));
   };
-
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
@@ -122,7 +122,10 @@ function itemAction() {
       const targetValueFind = localStorageItems.find(
         (value) => value === targetValue
       );
-      localStorageItems.splice(localStorageItems.indexOf(targetValueFind), 1);
+
+      // Remove Item From Local Storage & Update Local Storage
+      const itemIndex = localStorageItems.indexOf(targetValueFind);
+      localStorageItems.splice(itemIndex, 1);
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
@@ -145,9 +148,13 @@ function itemAction() {
     formInput.value = itemClicked.innerText;
     formInput.focus();
 
-    // const targetValue = e.target.parentElement.querySelector("span").innerText;
-    // const targetValueFind = localStorageItems.find((value)=> value === targetValue);
-    // localStorageItems.splice(localStorageItems.indexOf(targetValueFind),1)
+    // Change Item From Local Storage & Update Local Storage
+    const targetValue = e.target.innerText;
+    const targetValueFind = localStorageItems.find(
+      (value) => value === targetValue
+    );
+    const itemIndex = localStorageItems.indexOf(targetValueFind);
+    localStorageItems.splice(itemIndex, 1);
 
     itemForm.removeEventListener("submit", addItem);
 
@@ -167,8 +174,9 @@ function itemAction() {
         updateBtn.innerHTML = addBtnInnerHTML;
         itemClicked.innerText = formInput.value;
 
-        // localStorageItems.push(formInput.value)
-        // localStorage.setItem("items", JSON.stringify(localStorageItems));
+        // Change Local Storage
+        localStorageItems.splice(itemIndex, 0, formInput.value);
+        localStorage.setItem("items", JSON.stringify(localStorageItems));
 
         formInput.value = "";
       },
