@@ -76,9 +76,9 @@ function itemAction() {
     // Search Function
     const ItemSearch = (ItemSearch) => {
       const items = Array.from(document.querySelectorAll("li span")).map(
-        (item) => item.innerText
+        (item) => item.innerText.toLowerCase()
       );
-      const ItemFind = items.find((item) => item === ItemSearch);
+      const ItemFind = items.find((item) => item === ItemSearch.toLowerCase());
       return ItemFind;
     };
 
@@ -190,35 +190,38 @@ function itemAction() {
     .querySelectorAll("li span")
     .forEach((icon) => icon.addEventListener("click", changeItem));
 
+  //  --------------------------------------
+
   // Filter Item
-  // const filterInput = document.getElementById("filter-item");
-  // const filterItem = filterInput.value;
-  // const ItemSearch = (e) => {
-  //   const formData = new FormData(form);
-  //   const filterInputEntries = formData.get("filter-input");
-  //   const items = Array.from(document.querySelectorAll("li span")).map(
-  //     (item) => item.innerText
-  //   );
-  //   const ItemFind = items.find((item) => item === filterInputEntries);
-  //   // console.log(ItemFind);
-  //   console.log(items);
+  const filterItem = document.getElementById("filter-item");
+  const ItemSearch = (e) => {
+    const formData = new FormData(form);
+    const filterInputEntries = formData.get("filter-input");
+    console.log(filterInputEntries);
+    const items = Array.from(document.querySelectorAll("li span")).map((item) => item.innerText.toLowerCase());
+    console.log(items.includes(filterInputEntries.toLowerCase()));
+    
+    if(items.includes(filterInputEntries.toLowerCase())){
+      console.log( items.find( (item) => item == filterInputEntries.toLowerCase() )); 
+    }
 
-  //   for (let i = 0; i < items.length; i++) {
-  //     const item = items[i];
-  //     for (let letter = 0; letter < item.length; letter++) {
-  //       const itemLetter = item[letter];
-  //       console.log(itemLetter);
+    // for (let i = 0; i < items.length; i++) {
+    //   const item = items[i];
+    //   for (let letter = 0; letter < item.length; letter++) {
+    //     const itemLetter = item[letter];
+    //     console.log(itemLetter);
+    //   }
+    // }
+  };
 
-  //     }
-  //   }
-  // };
+  filterItem.addEventListener("input", ItemSearch);
 
-  // filterInput.addEventListener("keypress", ItemSearch);
+  //  --------------------------------------
 
   // Clear All
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll("li").forEach((li) => li.remove());
-    localStorage.removeItem("items")
+    localStorage.removeItem("items");
   });
 }
 
