@@ -29,11 +29,11 @@ themeBtn.addEventListener(
 })();
 
 // Clock
-setInterval(()=>{
+setInterval(() => {
   const now = new Date();
   const time = now.toLocaleTimeString();
   document.getElementById("clock").innerText = time;
-},1000)
+}, 1000);
 
 function itemAction() {
   // Items From Local Storage
@@ -109,10 +109,13 @@ function itemAction() {
     div.classList.add("remove-icon");
     div.addEventListener("click", (e) => {
       e.target.parentElement.remove();
-      
+
       // Remove Item From Local Storage & Update Local Storage
-      const targetValue = e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind = localStorageItems.find((value) => value === targetValue);
+      const targetValue =
+        e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find(
+        (value) => value === targetValue
+      );
       const itemIndex = localStorageItems.indexOf(targetValueFind);
       console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
@@ -138,12 +141,15 @@ function itemAction() {
     icon.addEventListener("click", (e) => {
       console.log("run0");
       e.target.parentElement.remove();
-      
+
       console.log("run1");
       // Remove Item From Local Storage & Update Local Storage
       console.log("run2");
-      const targetValue = e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind = localStorageItems.find((value) => value === targetValue);
+      const targetValue =
+        e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find(
+        (value) => value === targetValue
+      );
       const itemIndex = localStorageItems.indexOf(targetValueFind);
       console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
@@ -220,9 +226,9 @@ function itemAction() {
   //   const formData = new FormData(form);
   //   const filterInputEntries = formData.get("filter-input");
   //   const items = Array.from(document.querySelectorAll("li span")).map((item) =>item.innerText.toLowerCase());
-    
+
   //   if (items.includes(filterInputEntries.toLowerCase())) {
-      
+
   //     const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
   //     const itemsElement = Array.from(document.querySelectorAll("li span"));
   //     const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
@@ -231,29 +237,29 @@ function itemAction() {
 
   //     itemsElement.forEach((item)=>item.parentElement.style.display = "none")
   //     itemFindElement.parentElement.style.display = "flex";
-      
-      // for (let i = 0; i < items.length; i++) {
-      //   itemFindElement.style.display = "none";
-      //   if (items.includes(filterInputEntries.toLowerCase())) {
-      //     itemFindElement.style.display = "flex";}
-      //   }
 
-    // }
-    // else{
-    //   const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
-    //   const itemsElement = Array.from(document.querySelectorAll("li span"));
-    //   const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
-    //   itemsElement.forEach((item)=>item.parentElement.style.display = "flex")
-      
-    // }
+  // for (let i = 0; i < items.length; i++) {
+  //   itemFindElement.style.display = "none";
+  //   if (items.includes(filterInputEntries.toLowerCase())) {
+  //     itemFindElement.style.display = "flex";}
+  //   }
 
-    // for (let i = 0; i < items.length; i++) {
-    //   const item = items[i];
-    //   for (let letter = 0; letter < item.length; letter++) {
-    //     const itemLetter = item[letter];
-    //     console.log(itemLetter);
-    //   }
-    // }
+  // }
+  // else{
+  //   const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
+  //   const itemsElement = Array.from(document.querySelectorAll("li span"));
+  //   const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
+  //   itemsElement.forEach((item)=>item.parentElement.style.display = "flex")
+
+  // }
+
+  // for (let i = 0; i < items.length; i++) {
+  //   const item = items[i];
+  //   for (let letter = 0; letter < item.length; letter++) {
+  //     const itemLetter = item[letter];
+  //     console.log(itemLetter);
+  //   }
+  // }
   // };
 
   // filterItem.addEventListener("input", ItemSearch);
@@ -264,7 +270,7 @@ function itemAction() {
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll("li").forEach((li) => li.remove());
     localStorage.removeItem("items");
-    localStorageItems = []
+    localStorageItems = [];
   });
 }
 
