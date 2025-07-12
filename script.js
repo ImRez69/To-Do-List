@@ -64,7 +64,7 @@ function itemAction() {
     const newItem = formInput.value;
 
     // Empty Input Check
-    if (newItem === "") {
+    if (newItem.trim() == "") {
       document.getElementById("epmty-input-error").classList.add("show-error");
       return;
     } else {
