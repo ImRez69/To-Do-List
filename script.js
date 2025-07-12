@@ -32,7 +32,7 @@ themeBtn.addEventListener(
 setInterval(() => {
   document.getElementById("clock").innerText = new Date().toLocaleTimeString();
 }, 1000);
-  document.getElementById("date").innerText = new Date().toLocaleDateString();
+document.getElementById("date").innerText = new Date().toLocaleDateString();
 
 function itemAction() {
   // Items From Local Storage
@@ -174,6 +174,8 @@ function itemAction() {
     const formInput = document.getElementById("form-input");
     formInput.value = itemClicked.innerText;
     formInput.focus();
+
+
 
     // Change Item From Local Storage & Update Local Storage
     const targetValue = e.target.innerText;
