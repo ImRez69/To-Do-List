@@ -30,10 +30,9 @@ themeBtn.addEventListener(
 
 // Clock
 setInterval(() => {
-  const now = new Date();
-  const time = now.toLocaleTimeString();
-  document.getElementById("clock").innerText = time;
+  document.getElementById("clock").innerText = new Date().toLocaleTimeString();
 }, 1000);
+  document.getElementById("date").innerText = new Date().toLocaleDateString();
 
 function itemAction() {
   // Items From Local Storage

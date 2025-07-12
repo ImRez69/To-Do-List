@@ -46,10 +46,16 @@ header#title {
   flex-direction: row;
 }
 
-#clock {
-  width: 100%;
+#clock,
+#date {
+  width: 50%;
   height: 6vh;
-  text-align: center;
+}
+#clock {
+  text-align: start;
+}
+#date {
+  text-align: end;
 }
 
 h3 {
