@@ -28,6 +28,16 @@ themeBtn.addEventListener(
   }
 })();
 
+function checkUi() {
+  if (document.querySelectorAll("ul li span").length <= 0) {
+    document.getElementById("clear-btn").style.display = "none";
+    document.getElementById("filter-item").style.display = "none";
+  } else {
+    document.getElementById("clear-btn").style.display = "";
+    document.getElementById("filter-item").style.display = "";
+  }
+}
+
 // Clock
 setInterval(() => {
   document.getElementById("clock").innerText = new Date().toLocaleTimeString();
@@ -116,9 +126,7 @@ function itemAction() {
         (value) => value === targetValue
       );
       const itemIndex = localStorageItems.indexOf(targetValueFind);
-      console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
-      console.log(localStorageItems);
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     });
 
@@ -130,30 +138,29 @@ function itemAction() {
     // Add Item to Local Storage
     localStorageItems.push(newItem);
     localStorage.setItem("items", JSON.stringify(localStorageItems));
+
+    checkUi();
   };
   itemForm.addEventListener("submit", addItem);
 
   // Remove Item
   document.querySelectorAll(".remove-icon").forEach((icon) =>
     icon.addEventListener("click", (e) => {
-      console.log("run0");
+      checkUi(); 
       e.target.parentElement.remove();
 
-      console.log("run1");
       // Remove Item From Local Storage & Update Local Storage
-      console.log("run2");
       const targetValue =
         e.target.parentElement.querySelector("span").innerText;
       const targetValueFind = localStorageItems.find(
         (value) => value === targetValue
       );
       const itemIndex = localStorageItems.indexOf(targetValueFind);
-      console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
-      console.log(localStorageItems);
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
+  
 
   // Change Item
   const changeItem = (e) => {
@@ -252,41 +259,28 @@ function itemAction() {
 
   document.getElementById("filter-item").addEventListener("input", (e) => {
     const itemsList = document.getElementById("items-list");
-     const items = itemsList.querySelectorAll("li");
-     const inputEntry = e.target.value.toLowerCase();      
-     
-     items.forEach((item)=>{
+    const items = itemsList.querySelectorAll("li");
+    const inputEntry = e.target.value.toLowerCase();
+
+    items.forEach((item) => {
       const itemText = item.firstChild.textContent.toLowerCase();
-      if(itemText.indexOf(inputEntry) !== -1){
-        item.style.display = "flex"
-      }else{
-        item.style.display = "none"
-     }
-     }
-     
-    )
-    
+      if (itemText.indexOf(inputEntry) !== -1) {
+        item.style.display = "flex";
+      } else {
+        item.style.display = "none";
+      }
+    });
   });
-
-
-  // for (let i = 0; i < items.length; i++) {
-  //   const item = items[i];
-  //   for (let letter = 0; letter < item.length; letter++) {
-  //     const itemLetter = item[letter];
-  //     console.log(itemLetter);
-  //   }
-  // }
-
-  // filterItem.addEventListener("input", ItemSearch);
-
-  //  --------------------------------------
 
   // Clear All
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll("li").forEach((li) => li.remove());
     localStorage.removeItem("items");
     localStorageItems = [];
+    checkUi();
   });
+
+  checkUi();
 }
 
 itemAction();
