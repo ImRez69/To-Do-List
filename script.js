@@ -74,7 +74,9 @@ function itemAction() {
       document.getElementById("epmty-input-error").classList.add("show-error");
       return;
     } else {
-      document.getElementById("epmty-input-error").classList.remove("show-error");
+      document
+        .getElementById("epmty-input-error")
+        .classList.remove("show-error");
     }
 
     // Search Function
@@ -108,8 +110,11 @@ function itemAction() {
       e.target.parentElement.remove();
 
       // Remove Item From Local Storage & Update Local Storage
-      const targetValue = e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind = localStorageItems.find((value) => value === targetValue);
+      const targetValue =
+        e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find(
+        (value) => value === targetValue
+      );
       const itemIndex = localStorageItems.indexOf(targetValueFind);
       console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
@@ -153,7 +158,9 @@ function itemAction() {
   // Change Item
   const changeItem = (e) => {
     const itemClicked = e.target;
-    document.querySelectorAll("li").forEach((li) => li.classList.add("edit-mode"));
+    document
+      .querySelectorAll("li")
+      .forEach((li) => li.classList.add("edit-mode"));
     document.getElementById("filter-item").classList.add("edit-mode");
     document.getElementById("clear-btn").classList.add("edit-mode");
 
@@ -168,96 +175,99 @@ function itemAction() {
 
     // Change Item From Local Storage & Update Local Storage
     const targetValue = e.target.innerText;
-    const targetValueFind = localStorageItems.find((value) => value === targetValue);
+    const targetValueFind = localStorageItems.find(
+      (value) => value === targetValue
+    );
     const itemIndex = localStorageItems.indexOf(targetValueFind);
     localStorageItems.splice(itemIndex, 1);
-    
+
     const changeItemMode = (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        // Empty Input Check
-        if (formInput.value.trim() == "") {
-          document.getElementById("epmty-input-error").classList.add("show-error");
+      // Empty Input Check
+      if (formInput.value.trim() == "") {
+        document
+          .getElementById("epmty-input-error")
+          .classList.add("show-error");
         return;
-        } else {
-          document.getElementById("epmty-input-error").classList.remove("show-error");
-        }
-        // Search Function
-        const ItemSearch = (ItemSearch) => {
+      } else {
+        document
+          .getElementById("epmty-input-error")
+          .classList.remove("show-error");
+      }
+      // Search Function
+      const ItemSearch = (ItemSearch) => {
         const items = Array.from(document.querySelectorAll("li span")).map(
-        (item) => item.innerText.toLowerCase()
+          (item) => item.innerText.toLowerCase()
         );
-         const ItemFind = items.find((item) => item === ItemSearch.toLowerCase());
-         return ItemFind;
-        };
-        // Duplicate Check
-        if (ItemSearch(formInput.value)) {
-         document.getElementById("duplicate-error").classList.add("show-error");
-         return;
-        } else {
-         document.getElementById("duplicate-error").classList.remove("show-error");
-        }
+        const ItemFind = items.find(
+          (item) => item === ItemSearch.toLowerCase()
+        );
+        return ItemFind;
+      };
+      // Duplicate Check
+      if (ItemSearch(formInput.value)) {
+        document.getElementById("duplicate-error").classList.add("show-error");
+        return;
+      } else {
+        document
+          .getElementById("duplicate-error")
+          .classList.remove("show-error");
+      }
 
+      document
+        .querySelectorAll("li")
+        .forEach((li) => li.classList.remove("edit-mode"));
+      document.getElementById("filter-item").classList.remove("edit-mode");
+      document.getElementById("clear-btn").classList.remove("edit-mode");
 
-        document.querySelectorAll("li").forEach((li) => li.classList.remove("edit-mode"));
-        document.getElementById("filter-item").classList.remove("edit-mode");
-        document.getElementById("clear-btn").classList.remove("edit-mode");
+      updateBtn.classList.add("update-item");
+      updateBtn.style.backgroundColor = "#779eb9";
+      updateBtn.innerHTML = addBtnInnerHTML;
+      itemClicked.innerText = formInput.value;
 
-        updateBtn.classList.add("update-item");
-        updateBtn.style.backgroundColor = "#779eb9";
-        updateBtn.innerHTML = addBtnInnerHTML;
-        itemClicked.innerText = formInput.value;
+      // Change Local Storage
+      localStorageItems.splice(itemIndex, 0, formInput.value);
+      localStorage.setItem("items", JSON.stringify(localStorageItems));
 
-        // Change Local Storage
-        localStorageItems.splice(itemIndex, 0, formInput.value);
-        localStorage.setItem("items", JSON.stringify(localStorageItems));
-
-        formInput.value = "";
-        document.getElementById("add-item-btn").removeEventListener("click",changeItemMode);
-        itemForm.addEventListener("submit", addItem);
-    }
+      formInput.value = "";
+      document
+        .getElementById("add-item-btn")
+        .removeEventListener("click", changeItemMode);
+      itemForm.addEventListener("submit", addItem);
+    };
 
     itemForm.removeEventListener("submit", addItem);
-    document.getElementById("add-item-btn").addEventListener("click", changeItemMode);
-
+    document
+      .getElementById("add-item-btn")
+      .addEventListener("click", changeItemMode);
   };
-  document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
+  document
+    .querySelectorAll("li span")
+    .forEach((icon) => icon.addEventListener("click", changeItem));
 
   //  --------------------------------------
 
   // Filter Item
-  // const filterItem = document.getElementById("filter-item");
 
-  // const ItemSearch = (e) => {
-  //   const formData = new FormData(form);
-  //   const filterInputEntries = formData.get("filter-input");
-  //   const items = Array.from(document.querySelectorAll("li span")).map((item) =>item.innerText.toLowerCase());
+  document.getElementById("filter-item").addEventListener("input", (e) => {
+    const itemsList = document.getElementById("items-list");
+     const items = itemsList.querySelectorAll("li");
+     const inputEntry = e.target.value.toLowerCase();      
+     
+     items.forEach((item)=>{
+      const itemText = item.firstChild.textContent.toLowerCase();
+      if(itemText.indexOf(inputEntry) !== -1){
+        item.style.display = "flex"
+      }else{
+        item.style.display = "none"
+     }
+     }
+     
+    )
+    
+  });
 
-  //   if (items.includes(filterInputEntries.toLowerCase())) {
-
-  //     const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
-  //     const itemsElement = Array.from(document.querySelectorAll("li span"));
-  //     const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
-  //     console.log(itemFindElement);
-  //     console.log(items.includes(filterInputEntries.toLowerCase()));
-
-  //     itemsElement.forEach((item)=>item.parentElement.style.display = "none")
-  //     itemFindElement.parentElement.style.display = "flex";
-
-  // for (let i = 0; i < items.length; i++) {
-  //   itemFindElement.style.display = "none";
-  //   if (items.includes(filterInputEntries.toLowerCase())) {
-  //     itemFindElement.style.display = "flex";}
-  //   }
-
-  // }
-  // else{
-  //   const itmeFind = items.find((item) => item == filterInputEntries.toLowerCase());
-  //   const itemsElement = Array.from(document.querySelectorAll("li span"));
-  //   const itemFindElement = itemsElement.find((item) => item.innerText.toLowerCase() === itmeFind.toLowerCase());
-  //   itemsElement.forEach((item)=>item.parentElement.style.display = "flex")
-
-  // }
 
   // for (let i = 0; i < items.length; i++) {
   //   const item = items[i];
@@ -266,7 +276,6 @@ function itemAction() {
   //     console.log(itemLetter);
   //   }
   // }
-  // };
 
   // filterItem.addEventListener("input", ItemSearch);
 
