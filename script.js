@@ -74,9 +74,7 @@ function itemAction() {
       document.getElementById("epmty-input-error").classList.add("show-error");
       return;
     } else {
-      document
-        .getElementById("epmty-input-error")
-        .classList.remove("show-error");
+      document.getElementById("epmty-input-error").classList.remove("show-error");
     }
 
     // Search Function
@@ -110,11 +108,8 @@ function itemAction() {
       e.target.parentElement.remove();
 
       // Remove Item From Local Storage & Update Local Storage
-      const targetValue =
-        e.target.parentElement.querySelector("span").innerText;
-      const targetValueFind = localStorageItems.find(
-        (value) => value === targetValue
-      );
+      const targetValue = e.target.parentElement.querySelector("span").innerText;
+      const targetValueFind = localStorageItems.find((value) => value === targetValue);
       const itemIndex = localStorageItems.indexOf(targetValueFind);
       console.log(localStorageItems);
       localStorageItems.splice(itemIndex, 1);
@@ -123,10 +118,8 @@ function itemAction() {
     });
 
     li.appendChild(div);
-
     const itemsList = document.getElementById("items-list");
     itemsList.appendChild(li);
-
     formInput.value = "";
 
     // Add Item to Local Storage
@@ -160,9 +153,7 @@ function itemAction() {
   // Change Item
   const changeItem = (e) => {
     const itemClicked = e.target;
-    document
-      .querySelectorAll("li")
-      .forEach((li) => li.classList.add("edit-mode"));
+    document.querySelectorAll("li").forEach((li) => li.classList.add("edit-mode"));
     document.getElementById("filter-item").classList.add("edit-mode");
     document.getElementById("clear-btn").classList.add("edit-mode");
 
@@ -175,26 +166,40 @@ function itemAction() {
     formInput.value = itemClicked.innerText;
     formInput.focus();
 
-
-
     // Change Item From Local Storage & Update Local Storage
     const targetValue = e.target.innerText;
-    const targetValueFind = localStorageItems.find(
-      (value) => value === targetValue
-    );
+    const targetValueFind = localStorageItems.find((value) => value === targetValue);
     const itemIndex = localStorageItems.indexOf(targetValueFind);
     localStorageItems.splice(itemIndex, 1);
-
-    itemForm.removeEventListener("submit", addItem);
-
-    document.getElementById("add-item-btn").addEventListener(
-      "click",
-      (e) => {
+    
+    const changeItemMode = (e) => {
         e.preventDefault();
 
-        document
-          .querySelectorAll("li")
-          .forEach((li) => li.classList.remove("edit-mode"));
+        // Empty Input Check
+        if (formInput.value.trim() == "") {
+          document.getElementById("epmty-input-error").classList.add("show-error");
+        return;
+        } else {
+          document.getElementById("epmty-input-error").classList.remove("show-error");
+        }
+        // Search Function
+        const ItemSearch = (ItemSearch) => {
+        const items = Array.from(document.querySelectorAll("li span")).map(
+        (item) => item.innerText.toLowerCase()
+        );
+         const ItemFind = items.find((item) => item === ItemSearch.toLowerCase());
+         return ItemFind;
+        };
+        // Duplicate Check
+        if (ItemSearch(formInput.value)) {
+         document.getElementById("duplicate-error").classList.add("show-error");
+         return;
+        } else {
+         document.getElementById("duplicate-error").classList.remove("show-error");
+        }
+
+
+        document.querySelectorAll("li").forEach((li) => li.classList.remove("edit-mode"));
         document.getElementById("filter-item").classList.remove("edit-mode");
         document.getElementById("clear-btn").classList.remove("edit-mode");
 
@@ -208,15 +213,15 @@ function itemAction() {
         localStorage.setItem("items", JSON.stringify(localStorageItems));
 
         formInput.value = "";
-      },
-      { once: true }
-    );
+        document.getElementById("add-item-btn").removeEventListener("click",changeItemMode);
+        itemForm.addEventListener("submit", addItem);
+    }
 
-    itemForm.addEventListener("submit", addItem);
+    itemForm.removeEventListener("submit", addItem);
+    document.getElementById("add-item-btn").addEventListener("click", changeItemMode);
+
   };
-  document
-    .querySelectorAll("li span")
-    .forEach((icon) => icon.addEventListener("click", changeItem));
+  document.querySelectorAll("li span").forEach((icon) => icon.addEventListener("click", changeItem));
 
   //  --------------------------------------
 
