@@ -18,7 +18,7 @@ html {
 
 body {
   width: clamp(200px, 90%, 500px);
-  transition: 200ms;
+  transition: 200ms linear all;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,6 +70,10 @@ h3 {
   filter: drop-shadow(2px 2px 4px rgba(245, 248, 250, 0.2));
   width: 55px;
   height: 50px;
+  transition: 50ms linear all;
+}
+#theme-btn:active{
+  transform: scale(0.9);
 }
 
 .icon {
