@@ -16,7 +16,8 @@ themeBtn.addEventListener(
   })
 );
 
-(function currentTheme() {
+(function currentStatus() {
+  // Current Theme
   if (localStorage.getItem("Light Theme") === "true") {
     themeBtn.innerText = "☀️";
     document.body.classList.replace("dark", "light");
@@ -26,6 +27,13 @@ themeBtn.addEventListener(
     document.body.classList.replace("light", "dark");
     lightTheme = false;
   }
+
+  // Current Clock & Date
+  setInterval(() => {
+    document.getElementById("clock").innerText =
+      new Date().toLocaleTimeString();
+  }, 1000);
+  document.getElementById("date").innerText = new Date().toLocaleDateString();
 })();
 
 function checkUi() {
@@ -37,12 +45,6 @@ function checkUi() {
     document.getElementById("filter-item").style.display = "";
   }
 }
-
-// Clock
-setInterval(() => {
-  document.getElementById("clock").innerText = new Date().toLocaleTimeString();
-}, 1000);
-document.getElementById("date").innerText = new Date().toLocaleDateString();
 
 function itemAction() {
   // Items From Local Storage
@@ -146,7 +148,7 @@ function itemAction() {
   // Remove Item
   document.querySelectorAll(".remove-icon").forEach((icon) =>
     icon.addEventListener("click", (e) => {
-      checkUi(); 
+      checkUi();
       e.target.parentElement.remove();
 
       // Remove Item From Local Storage & Update Local Storage
@@ -160,7 +162,6 @@ function itemAction() {
       localStorage.setItem("items", JSON.stringify(localStorageItems));
     })
   );
-  
 
   // Change Item
   const changeItem = (e) => {
