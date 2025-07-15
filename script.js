@@ -1,20 +1,18 @@
 const themeBtn = document.getElementById("theme-btn");
 let lightTheme = document.body.classList.contains("light");
-themeBtn.addEventListener(
-  "click",
-  (toggleTheme = () => {
-    if (lightTheme) {
-      themeBtn.innerText = "🌙";
-      document.body.classList.replace("light", "dark");
-      lightTheme = false;
-    } else {
-      themeBtn.innerText = "☀️";
-      document.body.classList.replace("dark", "light");
-      lightTheme = true;
-    }
-    localStorage.setItem("Light Theme", `${lightTheme}`);
-  })
-);
+const toggleTheme = () => {
+  if (lightTheme) {
+    themeBtn.innerText = "🌙";
+    document.body.classList.replace("light", "dark");
+    lightTheme = false;
+  } else {
+    themeBtn.innerText = "☀️";
+    document.body.classList.replace("dark", "light");
+    lightTheme = true;
+  }
+  localStorage.setItem("Light Theme", `${lightTheme}`);
+};
+themeBtn.addEventListener("click", toggleTheme);
 
 (function currentStatus() {
   // Current Theme
