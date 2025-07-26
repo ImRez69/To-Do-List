@@ -3,6 +3,7 @@ const themeBtn = document.getElementById("theme-btn");
 const itemForm = document.getElementById("item-form");
 const formInput = document.getElementById("form-input");
 const epmtyInputError = document.getElementById("epmty-input-error");
+const itemsList = document.getElementById("items-list");
 
 (function currentStatus() {
   // Current Theme
@@ -18,8 +19,7 @@ const epmtyInputError = document.getElementById("epmty-input-error");
 
   // Current Clock & Date
   setInterval(() => {
-    document.getElementById("clock").innerText =
-      new Date().toLocaleTimeString();
+    document.getElementById("clock").innerText = new Date().toLocaleTimeString();
   }, 1000);
   document.getElementById("date").innerText = new Date().toLocaleDateString();
 })();
@@ -46,6 +46,20 @@ function addItem(e) {
   } else {
     epmtyInputError.classList.remove("show-error");
   }
+  itemsList.appendChild(createItem(newItem));
+  formInput.value = "";
+}
+
+function createItem(newItemValue){
+  const li = document.createElement("li")
+  const span = document.createElement("span")
+  const div = document.createElement("div")
+  span.innerText = newItemValue;
+  div.classList.add("remove-icon");
+  li.classList.add("list-item");
+  li.appendChild(span)
+  li.appendChild(div)
+  return li;  
 }
 
 // function checkUi() {
