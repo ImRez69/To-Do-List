@@ -4,6 +4,7 @@ const itemForm = document.getElementById("item-form");
 const formInput = document.getElementById("form-input");
 const epmtyInputError = document.getElementById("epmty-input-error");
 const itemsList = document.getElementById("items-list");
+const clearBtn = document.getElementById("clear-btn");
 
 (function currentStatus() {
   // Current Theme
@@ -62,6 +63,13 @@ function createItem(newItemValue){
   return li;  
 }
 
+function onClickItem(e){
+  if(e.target.classList.contains("remove-icon")){e.target.parentElement.remove()}
+}
+
+function clearItems(){
+  itemsList.innerHTML = "";
+}
 // function checkUi() {
 //   if (document.querySelectorAll("ul li span").length <= 0) {
 //     document.getElementById("clear-btn").style.display = "none";
@@ -75,3 +83,5 @@ function createItem(newItemValue){
 // Event Listeners
 themeBtn.addEventListener("click", toggleTheme);
 itemForm.addEventListener("submit", addItem);
+itemsList.addEventListener("click", onClickItem)
+clearBtn.addEventListener("click", clearItems)
