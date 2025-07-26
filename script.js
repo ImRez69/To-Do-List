@@ -51,9 +51,9 @@ function toggleTheme() {
 
 // Display Items Function
 function displayItems() {
-  const itemFromLocalStorage = getItemFromLocalStorage();
-  itemFromLocalStorage.forEach((item) => addItemToDOM(item));
-  checkUI();
+  const itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
+  itemFromLocalStorage.forEach((item) => addItemToDOM(item)); // Add Items in Local Storage to DOM
+  checkUI(); // Run Check UI Function
 }
 
 // Add Item Function
@@ -66,8 +66,8 @@ function addItem(e) {
   } else {
     epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
   }
-  addItemToDOM(newItem);
-  addItemToLocalStorage(newItem);
+  addItemToDOM(newItem); // Run Add Item To DOM Function
+  addItemToLocalStorage(newItem); // Run Add Item To Local Storage Function
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
 }
@@ -87,17 +87,20 @@ function addItemToDOM(item) {
 
 // Add Item To Local Storage Function
 function addItemToLocalStorage(item) {
-  const itemFromLocalStorage = getItemFromLocalStorage();
+  const itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
   itemFromLocalStorage.push(item);
   localStorage.setItem("items", JSON.stringify(itemFromLocalStorage));
 }
 
+// Get Item From Local Storage Function
 function getItemFromLocalStorage() {
   let itemFromLocalStorage;
   if (localStorage.getItem("items") === null) {
-    itemFromLocalStorage = [];
+    // If Local Storage Is Empty Run It
+    itemFromLocalStorage = []; // Set a Empty Array For Value
   } else {
-    itemFromLocalStorage = JSON.parse(localStorage.getItem("items"));
+    // If Local Storage Is Not Empty Run It
+    itemFromLocalStorage = JSON.parse(localStorage.getItem("items")); // Set Value From Local Storage Item
   }
   return itemFromLocalStorage;
 }
@@ -108,6 +111,7 @@ function onClickItem(e) {
   if (clickedItem.classList.contains("remove-icon")) {
     // If Item Clicked Hace remove-icon Class Run It
     clickedItem.parentElement.remove(); // Remove Click Target Parent Element
+    removeFromLoaclStorage(clickedItem.parentElement.textContent); // Run Remove Item From Local Storage Function
   }
   checkUI(); // Run Check UI Function
 }
@@ -115,7 +119,15 @@ function onClickItem(e) {
 // Clear Items Function
 function clearItems() {
   itemsList.innerHTML = ""; // Set Empty innerHTML for Ul
+  localStorage.removeItem("items"); // Remove Items From Local Storage
   checkUI(); // Run Check UI Function
+}
+
+// Remove Item From Local Storage Function
+function removeFromLoaclStorage(item) {
+  let itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
+  itemFromLocalStorage = itemFromLocalStorage.filter((i) => i !== item); // Remove Item Equal to Item Clicked Text Content
+  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage)); // Set & Update Items In Local Storage
 }
 
 // Filret Items Function
