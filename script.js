@@ -49,6 +49,13 @@ function toggleTheme() {
   localStorage.setItem("Light Theme", `${lightTheme}`); // Add Light Theme Status to Local Stroge
 }
 
+// Display Items Function
+function displayItems() {
+  const itemFromLocalStorage = getItemFromLocalStorage();
+  itemFromLocalStorage.forEach((item) => addItemToDOM(item));
+  checkUI();
+}
+
 // Add Item Function
 function addItem(e) {
   e.preventDefault(); // Change Default Button Click // Don't Refresh Page
@@ -60,7 +67,7 @@ function addItem(e) {
     epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
   }
   addItemToDOM(newItem);
-  addItemToLocalStorage(newItem)
+  addItemToLocalStorage(newItem);
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
 }
@@ -80,14 +87,19 @@ function addItemToDOM(item) {
 
 // Add Item To Local Storage Function
 function addItemToLocalStorage(item) {
+  const itemFromLocalStorage = getItemFromLocalStorage();
+  itemFromLocalStorage.push(item);
+  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage));
+}
+
+function getItemFromLocalStorage() {
   let itemFromLocalStorage;
   if (localStorage.getItem("items") === null) {
     itemFromLocalStorage = [];
   } else {
     itemFromLocalStorage = JSON.parse(localStorage.getItem("items"));
   }
-  itemFromLocalStorage.push(item);
-  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage));
+  return itemFromLocalStorage;
 }
 
 // On Click Action Function
@@ -143,3 +155,4 @@ itemForm.addEventListener("submit", addItem); // Add Submit Event Listener to Ad
 itemsList.addEventListener("click", onClickItem); // Add Click Event Listener to ul
 clearBtn.addEventListener("click", clearItems); // Add Click Event Listener to Clear Button
 filterItem.addEventListener("input", filretItems); // Add input Event Listener to Filter Input
+document.addEventListener("DOMContentLoaded", displayItems); // Add DOMContentLoaded Event Listener to document
