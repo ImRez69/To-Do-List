@@ -1,7 +1,8 @@
 let lightTheme = document.body.classList.contains("light");
 const themeBtn = document.getElementById("theme-btn");
 const itemForm = document.getElementById("item-form");
-const addItemBtn = document.getElementById("add-item-btn");
+const formInput = document.getElementById("form-input");
+const epmtyInputError = document.getElementById("epmty-input-error");
 
 (function currentStatus() {
   // Current Theme
@@ -23,7 +24,7 @@ const addItemBtn = document.getElementById("add-item-btn");
   document.getElementById("date").innerText = new Date().toLocaleDateString();
 })();
 
-function toggleTheme(){
+function toggleTheme() {
   if (lightTheme) {
     themeBtn.innerText = "🌙";
     document.body.classList.replace("light", "dark");
@@ -34,10 +35,17 @@ function toggleTheme(){
     lightTheme = true;
   }
   localStorage.setItem("Light Theme", `${lightTheme}`);
-};
+}
 
-function addItem(e){
-  e.preventDefault()
+function addItem(e) {
+  e.preventDefault();
+  const newItem = formInput.value;
+  if (newItem === "") {
+    epmtyInputError.classList.add("show-error");
+    return;
+  } else {
+    epmtyInputError.classList.remove("show-error");
+  }
 }
 
 // function checkUi() {
