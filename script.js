@@ -59,22 +59,35 @@ function addItem(e) {
   } else {
     epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
   }
-  itemsList.appendChild(createItem(newItem)); // Append li return From createItem Function To ul For a Child
+  addItemToDOM(newItem);
+  addItemToLocalStorage(newItem)
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
 }
 
-// Add Item Function
-function createItem(newItemValue) {
+// Add Item To DOM Function
+function addItemToDOM(item) {
   const li = document.createElement("li"); // Create li Element
   const span = document.createElement("span"); // Create span Element
   const div = document.createElement("div"); // Create div Element
-  span.innerText = newItemValue; // Set newItem Value to span Element
+  span.innerText = item; // Set newItem Value to span Element
   div.classList.add("remove-icon"); // Added Class to div Element
   li.classList.add("list-item"); // Added Class to li Element
   li.appendChild(span); // Append Child span Element to li Element
   li.appendChild(div); // Append Child div Element to li Element
-  return li; // return li Element
+  itemsList.appendChild(li); // Append li To ul For a Child
+}
+
+// Add Item To Local Storage Function
+function addItemToLocalStorage(item) {
+  let itemFromLocalStorage;
+  if (localStorage.getItem("items") === null) {
+    itemFromLocalStorage = [];
+  } else {
+    itemFromLocalStorage = JSON.parse(localStorage.getItem("items"));
+  }
+  itemFromLocalStorage.push(item);
+  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage));
 }
 
 // On Click Action Function
