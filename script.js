@@ -5,6 +5,7 @@ const formInput = document.getElementById("form-input");
 const epmtyInputError = document.getElementById("epmty-input-error");
 const itemsList = document.getElementById("items-list");
 const clearBtn = document.getElementById("clear-btn");
+const filterItem = document.getElementById("filter-item");
 
 (function currentStatus() {
   // Current Theme
@@ -49,6 +50,7 @@ function addItem(e) {
   }
   itemsList.appendChild(createItem(newItem));
   formInput.value = "";
+  checkUI()
 }
 
 function createItem(newItemValue){
@@ -64,24 +66,32 @@ function createItem(newItemValue){
 }
 
 function onClickItem(e){
-  if(e.target.classList.contains("remove-icon")){e.target.parentElement.remove()}
+  const clickedItem = e.target;
+  if(clickedItem.classList.contains("remove-icon")){
+    clickedItem.parentElement.remove()
+  }
+checkUI()
 }
 
 function clearItems(){
-  itemsList.innerHTML = "";
+itemsList.innerHTML = "";
+checkUI()
 }
-// function checkUi() {
-//   if (document.querySelectorAll("ul li span").length <= 0) {
-//     document.getElementById("clear-btn").style.display = "none";
-//     document.getElementById("filter-item").style.display = "none";
-//   } else {
-//     document.getElementById("clear-btn").style.display = "";
-//     document.getElementById("filter-item").style.display = "";
-//   }
-// }
+
+function checkUI() {
+  const items = document.querySelectorAll("li")
+  if (items.length === 0) {
+    clearBtn.style.display = "none";
+    filterItem.style.display = "none";
+  } else {
+    clearBtn.style.display = "";
+    filterItem.style.display = "";
+  }
+}
 
 // Event Listeners
 themeBtn.addEventListener("click", toggleTheme);
 itemForm.addEventListener("submit", addItem);
-itemsList.addEventListener("click", onClickItem)
-clearBtn.addEventListener("click", clearItems)
+itemsList.addEventListener("click", onClickItem);
+clearBtn.addEventListener("click", clearItems);
+checkUI()
