@@ -93,6 +93,23 @@ function clearItems() {
   checkUI(); // Run Check UI Function
 }
 
+// Filret Items Function
+function filretItems(e) {
+  const items = itemsList.querySelectorAll("li span"); // Get span Tag From li In ul
+  const inputText = e.target.value.toLowerCase(); // Get Lower Case Target Value
+
+  // For E ach on span Tag List
+  items.forEach((item) => {
+    const itemName = item.textContent.toLowerCase(); // Get Text Content of span
+    if (itemName.indexOf(inputText) !== -1) {
+      // If IndexOf InputText Not Equal -1 Run It Thats Mean inputText Existed In span Text Cntent
+      item.parentElement.style.display = "flex"; // Set Display Flex For Include Item
+    } else {
+      item.parentElement.style.display = "none"; // Set Display None For Not Include Item
+    }
+  });
+}
+
 // Check UI Function
 function checkUI() {
   const items = itemsList.querySelectorAll("li"); // Get li Tags in ul
@@ -102,8 +119,8 @@ function checkUI() {
     filterItem.style.display = "none"; // Set Display none For Filter Item Input
   } else {
     // If Items Lenght Not Equal 0 Run It
-    clearBtn.style.display = ""; // Remove Display Property For Clear Button
-    filterItem.style.display = ""; // Remove Display Property For Filter Item Input
+    clearBtn.style.display = "block"; // Set Display Block For Clear Button
+    filterItem.style.display = "block"; // Set Display Block For Filter Item Input
   }
 }
 
@@ -112,3 +129,4 @@ themeBtn.addEventListener("click", toggleTheme); // Add Click Event Listener to 
 itemForm.addEventListener("submit", addItem); // Add Submit Event Listener to Add Item Form
 itemsList.addEventListener("click", onClickItem); // Add Click Event Listener to ul
 clearBtn.addEventListener("click", clearItems); // Add Click Event Listener to Clear Button
+filterItem.addEventListener("input", filretItems); // Add input Event Listener to Filter Input
