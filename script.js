@@ -6,6 +6,7 @@ const epmtyInputError = document.getElementById("epmty-input-error");
 const itemsList = document.getElementById("items-list");
 const clearBtn = document.getElementById("clear-btn");
 const filterItem = document.getElementById("filter-item");
+const addItemBtn = document.getElementById("add-item-btn");
 
 // Current Status Date , Time , Theme & checkUI
 (function currentStatus() {
@@ -75,12 +76,10 @@ function addItem(e) {
 // Add Item To DOM Function
 function addItemToDOM(item) {
   const li = document.createElement("li"); // Create li Element
-  const span = document.createElement("span"); // Create span Element
   const div = document.createElement("div"); // Create div Element
-  span.innerText = item; // Set newItem Value to span Element
+  li.innerText = item; // Set newItem Value to li Inner Text Element
   div.classList.add("remove-icon"); // Added Class to div Element
   li.classList.add("list-item"); // Added Class to li Element
-  li.appendChild(span); // Append Child span Element to li Element
   li.appendChild(div); // Append Child div Element to li Element
   itemsList.appendChild(li); // Append li To ul For a Child
 }
@@ -107,13 +106,13 @@ function getItemFromLocalStorage() {
 
 // On Click Action Function
 function onClickItem(e) {
-  const clickedItem = e.target; // Get Clicked Target
-  if (clickedItem.classList.contains("remove-icon")) {
-    // If Item Clicked Hace remove-icon Class Run It
-    clickedItem.parentElement.remove(); // Remove Click Target Parent Element
-    removeFromLoaclStorage(clickedItem.parentElement.textContent); // Run Remove Item From Local Storage Function
+  if (e.target.classList.contains("remove-icon")) {
+    // If Item Clicked Have remove-icon Class Run It
+    removeItem(e.target.parentElement); // Run Remove Item Function
+  } else {
+    // If Item Clicked Dont Have remove-icon Class Run It
+    setItemToEdit(e.target); // Run Set Item To Edit Function
   }
-  checkUI(); // Run Check UI Function
 }
 
 // Clear Items Function
@@ -132,19 +131,36 @@ function removeFromLoaclStorage(item) {
 
 // Filret Items Function
 function filretItems(e) {
-  const items = itemsList.querySelectorAll("li span"); // Get span Tag From li In ul
+  const items = itemsList.querySelectorAll("li"); // Get li Tag From In ul
   const inputText = e.target.value.toLowerCase(); // Get Lower Case Target Value
 
-  // For E ach on span Tag List
+  // For Each on li Tag List
   items.forEach((item) => {
-    const itemName = item.textContent.toLowerCase(); // Get Text Content of span
+    const itemName = item.textContent.toLowerCase(); // Get Text Content of li
     if (itemName.indexOf(inputText) !== -1) {
-      // If IndexOf InputText Not Equal -1 Run It Thats Mean inputText Existed In span Text Cntent
-      item.parentElement.style.display = "flex"; // Set Display Flex For Include Item
+      // If IndexOf InputText Not Equal -1 Run It Thats Mean inputText Existed In li Text Cntent
+      item.style.display = "flex"; // Set Display Flex For Include Item
     } else {
-      item.parentElement.style.display = "none"; // Set Display None For Not Include Item
+      item.style.display = "none"; // Set Display None For Not Include Item
     }
   });
+}
+
+// Remove Item Function
+function removeItem(item) {
+  item.remove(); // Remove Click Target Parent Element
+  removeFromLoaclStorage(item.textContent); // Run Remove Item From Local Storage Function
+  checkUI(); // Run Check UI Function
+}
+
+// Set Item To Edit Function
+function setItemToEdit(item) {
+  itemsList.querySelectorAll("li").forEach((item) => item.classList.remove("edit-mode")); // Remove Edit Mode Class For All li In ul
+  item.classList.add("edit-mode"); // Add Edite Mode Class to Target li
+  formInput.value = item.textContent; // Set List Clicked Text Content to Input Value
+  formInput.focus(); // Focus On Input
+  addItemBtn.innerHTML = "✏️Update "; // Change Inner HTML To Edit mode
+  addItemBtn.classList.add("edit-mode"); // Add Edit Mode Class To Button
 }
 
 // Check UI Function

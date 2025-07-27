@@ -186,6 +186,10 @@ input::placeholder {
   color: #d0dde7;
 }
 
+#add-item-btn.edit-mode{
+background-color: #5682a1;
+}
+
 #add-item-btn-icon {
   width: 20%;
   fill: #f5f8fa;
@@ -196,6 +200,7 @@ input::placeholder {
 #add-item-btn:hover #add-item-btn-icon {
   fill: #d0dde7;
 }
+
 
 section {
   width: 100%;
@@ -225,7 +230,7 @@ section {
   border: 4px #5682a1 solid;
 }
 
-.list-item:hover span {
+/* .list-item:hover {
   animation: blinking 2000ms infinite 300ms;
 }
 
@@ -240,7 +245,7 @@ section {
   100% {
     opacity: 1;
   }
-}
+} */
 
 .list-item:hover div.remove-icon::before {
   background-color: red;
@@ -301,7 +306,7 @@ body.light div.remove-icon::after {
   fill: red;
 }
 
-.edit-mode {
+.list-item.edit-mode {
   opacity: 0.2;
 }
 
