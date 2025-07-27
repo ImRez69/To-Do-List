@@ -61,12 +61,15 @@ function displayItems() {
 function addItem(e) {
   e.preventDefault(); // Change Default Button Click // Don't Refresh Page
   const newItem = formInput.value; // Get Input Value
+
+  // Validation Check
   if (newItem === "") {
     epmtyInputError.classList.add("show-error"); // Add Class For Showing Empty Error
     return;
   } else {
     epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
   }
+  
   addItemToDOM(newItem); // Run Add Item To DOM Function
   addItemToLocalStorage(newItem); // Run Add Item To Local Storage Function
   formInput.value = ""; // Set Empty Value For Input
