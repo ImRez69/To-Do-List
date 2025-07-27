@@ -3,10 +3,12 @@ const themeBtn = document.getElementById("theme-btn");
 const itemForm = document.getElementById("item-form");
 const formInput = document.getElementById("form-input");
 const epmtyInputError = document.getElementById("epmty-input-error");
+const duplicateError = document.getElementById("duplicate-error");
 const itemsList = document.getElementById("items-list");
 const clearBtn = document.getElementById("clear-btn");
 const filterItem = document.getElementById("filter-item");
 const addItemBtn = document.getElementById("add-item-btn");
+let isEditMode = false;
 
 // Current Status Date , Time , Theme & checkUI
 (function currentStatus() {
@@ -52,8 +54,8 @@ function toggleTheme() {
 
 // Display Items Function
 function displayItems() {
-  const itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
-  itemFromLocalStorage.forEach((item) => addItemToDOM(item)); // Add Items in Local Storage to DOM
+  const itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
+  itemsFromLocalStorage.forEach((item) => addItemToDOM(item)); // Add Items in Local Storage to DOM
   checkUI(); // Run Check UI Function
 }
 
@@ -64,16 +66,41 @@ function addItem(e) {
 
   // Validation Check
   if (newItem === "") {
+    // If Input Value Is Empty Run It
     epmtyInputError.classList.add("show-error"); // Add Class For Showing Empty Error
-    return;
+    return; // Break Function
+  } else if (checkItemExisted(newItem)) {
+    // If Input Value Is Existed Run It
+    duplicateError.classList.add("show-error"); // Add Class For Showing Duplicate Error
+    return; // Break Function
   } else {
+    // If Input Value Is Not Exiested & Not Empty Run It
     epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
+    duplicateError.classList.remove("show-error"); // Remove Class For Showing Duplicate Error
   }
-  
+
+  // Edit Mode Action
+  if (isEditMode) {
+    const itemToEdit = itemsList.querySelector(".edit-mode");
+    removeFromLoaclStorage(itemToEdit.textContent); // Remove Item From Local Storage
+    itemToEdit.remove(); // Remvoe Item From DOM
+    const plusIcon = `<svg class="icon" id="add-item-btn-icon" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero" /> </svg>`; // Plus Icon SV
+    itemToEdit.classList.remove("edit-mode"); // Add Edite Mode Class to Target li
+    addItemBtn.innerHTML = `${plusIcon} Add Item`; // Change Inner HTML To Add Item Mode
+    addItemBtn.classList.remove("edit-mode"); // Add Edit Mode Class To Button
+    isEditMode = false; // Set Is Edit Mode Let To False
+  }
+
   addItemToDOM(newItem); // Run Add Item To DOM Function
   addItemToLocalStorage(newItem); // Run Add Item To Local Storage Function
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
+}
+
+// Check Existed Item Function
+function checkItemExisted(item) {
+  const itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Local Storage Function
+  return itemsFromLocalStorage.includes(item); // Return True or Fars & Break Function
 }
 
 // Add Item To DOM Function
@@ -89,22 +116,22 @@ function addItemToDOM(item) {
 
 // Add Item To Local Storage Function
 function addItemToLocalStorage(item) {
-  const itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
-  itemFromLocalStorage.push(item);
-  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage));
+  const itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
+  itemsFromLocalStorage.push(item);
+  localStorage.setItem("items", JSON.stringify(itemsFromLocalStorage));
 }
 
 // Get Item From Local Storage Function
 function getItemFromLocalStorage() {
-  let itemFromLocalStorage;
+  let itemsFromLocalStorage;
   if (localStorage.getItem("items") === null) {
     // If Local Storage Is Empty Run It
-    itemFromLocalStorage = []; // Set a Empty Array For Value
+    itemsFromLocalStorage = []; // Set a Empty Array For Value
   } else {
     // If Local Storage Is Not Empty Run It
-    itemFromLocalStorage = JSON.parse(localStorage.getItem("items")); // Set Value From Local Storage Item
+    itemsFromLocalStorage = JSON.parse(localStorage.getItem("items")); // Set Value From Local Storage Item
   }
-  return itemFromLocalStorage;
+  return itemsFromLocalStorage; // Return Items In Local Storage & Break Function
 }
 
 // On Click Action Function
@@ -127,9 +154,9 @@ function clearItems() {
 
 // Remove Item From Local Storage Function
 function removeFromLoaclStorage(item) {
-  let itemFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
-  itemFromLocalStorage = itemFromLocalStorage.filter((i) => i !== item); // Remove Item Equal to Item Clicked Text Content
-  localStorage.setItem("items", JSON.stringify(itemFromLocalStorage)); // Set & Update Items In Local Storage
+  let itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Return Value From Function
+  itemsFromLocalStorage = itemsFromLocalStorage.filter((i) => i !== item); // Remove Item Equal to Item Clicked Text Content
+  localStorage.setItem("items", JSON.stringify(itemsFromLocalStorage)); // Set & Update Items In Local Storage
 }
 
 // Filret Items Function
@@ -148,7 +175,6 @@ function filretItems(e) {
     }
   });
 }
-
 // Remove Item Function
 function removeItem(item) {
   item.remove(); // Remove Click Target Parent Element
@@ -158,7 +184,10 @@ function removeItem(item) {
 
 // Set Item To Edit Function
 function setItemToEdit(item) {
-  itemsList.querySelectorAll("li").forEach((item) => item.classList.remove("edit-mode")); // Remove Edit Mode Class For All li In ul
+  isEditMode = true;
+  itemsList
+    .querySelectorAll("li")
+    .forEach((item) => item.classList.remove("edit-mode")); // Remove Edit Mode Class For All li In ul
   item.classList.add("edit-mode"); // Add Edite Mode Class to Target li
   formInput.value = item.textContent; // Set List Clicked Text Content to Input Value
   formInput.focus(); // Focus On Input
