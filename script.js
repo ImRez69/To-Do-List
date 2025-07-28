@@ -8,6 +8,7 @@ const itemsList = document.getElementById("items-list");
 const clearBtn = document.getElementById("clear-btn");
 const filterItem = document.getElementById("filter-item");
 const addItemBtn = document.getElementById("add-item-btn");
+const errors = document.querySelectorAll(".error");
 let isEditMode = false;
 
 // Current Status Date , Time , Theme & checkUI
@@ -63,24 +64,17 @@ function displayItems() {
 function addItem(e) {
   e.preventDefault(); // Change Default Button Click // Don't Refresh Page
   const newItem = formInput.value; // Get Input Value
-
-  // Validation Check
-  if (newItem === "") {
-    // If Input Value Is Empty Run It
-    epmtyInputError.classList.add("show-error"); // Add Class For Showing Empty Error
-    return; // Break Function
-  } else if (checkItemExisted(newItem)) {
-    // If Input Value Is Existed Run It
-    duplicateError.classList.add("show-error"); // Add Class For Showing Duplicate Error
-    return; // Break Function
+  if (validationCheck(newItem)) {
+    // Validation Check Function Run It & If Return a Value Run It This Block
+    return;
   } else {
     // If Input Value Is Not Exiested & Not Empty Run It
-    epmtyInputError.classList.remove("show-error"); // Remove Class For Showing Empty Error
-    duplicateError.classList.remove("show-error"); // Remove Class For Showing Duplicate Error
+    errors.forEach((error) => error.classList.remove("show-error"));
   }
 
   // Edit Mode Action
   if (isEditMode) {
+    itemForm.addEventListener("submit", addItem); // Add Submit Event Listener to Add Item Form
     const itemToEdit = itemsList.querySelector(".edit-mode");
     removeFromLoaclStorage(itemToEdit.textContent); // Remove Item From Local Storage
     itemToEdit.remove(); // Remvoe Item From DOM
@@ -96,10 +90,37 @@ function addItem(e) {
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
 }
+// Validatin Ckeck Function
+function validationCheck(newItem) {
+  switch (true) {
+    // Run Always
+    case newItem === "" || newItem.trim() === "":
+      // If Input Value Is Empty Run It
+      errors.forEach((error) => error.classList.remove("show-error")); // Remove All show-error Class From errors
+      epmtyInputError.classList.add("show-error"); // Add Class For Showing Duplicate Error
+      return true; // Return newItem & Break Function
+
+    case checkItemExisted(newItem) === true:
+      // If Input Value Is Existed Run It
+      errors.forEach((error) => error.classList.remove("show-error")); // Remove All show-error Class From errors
+      duplicateError.classList.add("show-error"); // Add Class For Showing Duplicate Error
+      return true; // Return newItem & Break Function
+
+    default:
+      return false;
+  }
+}
 
 // Check Existed Item Function
 function checkItemExisted(item) {
   const itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Local Storage Function
+
+  // let itemInCheck = item;
+  // if(itemInCheck[0] === " "){
+  //   console.log("test");
+  //   console.log(itemInCheck[0]);
+  // }
+
   return itemsFromLocalStorage.includes(item); // Return True or Fars & Break Function
 }
 
@@ -175,6 +196,7 @@ function filretItems(e) {
     }
   });
 }
+
 // Remove Item Function
 function removeItem(item) {
   item.remove(); // Remove Click Target Parent Element
