@@ -8,8 +8,7 @@ A simple and interactive To-Do List web application built with HTML, CSS, and Ja
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## About
 The To-Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and a custom font (Atma) for a unique look.
