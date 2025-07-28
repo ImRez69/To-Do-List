@@ -39,8 +39,7 @@ Open the application:
 
 Open index.html in a web browser (e.g., Chrome, Firefox).  
 No additional dependencies or build steps are required, as the project uses vanilla HTML, CSS, and JavaScript.  
-Also, you can run index.html <a href="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html" target="_blank">Here</a>.
-<iframe src="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html title="To Do List Preveiw"></iframe>
+- Also, you can run `index.html` [here](https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html).
 
 
 ## Usage
