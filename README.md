@@ -9,7 +9,6 @@ A simple and interactive To-Do List web application built with HTML, CSS, and Ja
 - [Usage](#usage)
 - [Technologies](#technologies)
 
-
 ## About
 The To-Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and a custom font (Atma) for a unique look.
 
@@ -36,10 +35,13 @@ To run the To-Do List application locally, follow these steps:
 
 Ensure the font file is included:The project uses the Atma-Regular.ttf font, which should be placed in the Font directory. If you don't have the font, you can replace the font reference in style.css with a fallback font like Arial or download the Atma font.
 
-Open the application:
-Open index.html in a web browser (e.g., Chrome, Firefox).
-Also can run <a href="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html" target="_blank">Here</a> 
-No additional dependencies or build steps are required, as the project uses vanilla HTML, CSS, and JavaScript.
+Open the application:  
+
+Open index.html in a web browser (e.g., Chrome, Firefox).  
+No additional dependencies or build steps are required, as the project uses vanilla HTML, CSS, and JavaScript.  
+Also, you can run index.html <a href="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html" target="_blank">Here</a>.
+<iframe src="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html title="To Do List Preveiw"></iframe>
+
 
 ## Usage
 
