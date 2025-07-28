@@ -41,7 +41,8 @@ Open index.html in a web browser (e.g., Chrome, Firefox).
 Also can run <a href="https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html" target="_blank">Here</a> 
 No additional dependencies or build steps are required, as the project uses vanilla HTML, CSS, and JavaScript.
 
-Usage
+## Usage
+
 Open the application in a web browser.
 Add a Task: Enter a task in the input field and click the "Add Item" button or press Enter.
 Edit a Task: Click on a task in the list to populate the input field, edit the text, and click "Update" to save changes.
@@ -51,7 +52,8 @@ Clear All Tasks: Click the "Clear All" button to remove all tasks.
 Toggle Theme: Click the theme button (🌙 or ☀️) to switch between dark and light modes.
 The current time and date are displayed in the header, updated in real-time.
 
-Technologies
+## Technologies
+
 HTML5: For the structure of the application.
 CSS3: For styling, including responsive design and custom animations.
 JavaScript (Vanilla): For interactivity, local storage, and real-time clock functionality.
