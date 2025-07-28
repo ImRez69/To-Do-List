@@ -116,9 +116,21 @@ function checkItemExisted(item) {
   const itemsFromLocalStorage = getItemFromLocalStorage(); // Set Value From Local Storage Function
 
   // let itemInCheck = item;
-  // if(itemInCheck[0] === " "){
-  //   console.log("test");
-  //   console.log(itemInCheck[0]);
+  // // while (itemInCheck[0] === " ") {
+  // //   itemInCheck = itemInCheck.slice(0, 1);
+  // //   console.log("test");
+  // //   console.log(itemInCheck[0] === " ");
+  // // }
+
+  // for (let i = 0; itemInCheck[i] === " "; i++) {
+  //   itemInCheck = itemInCheck.slice(0, 1);
+  //   console.log(itemInCheck);
+  //   console.log(itemInCheck.slice(0, 1));
+  // }
+
+  // if (itemInCheck) {
+  //   // console.log(itemInCheck);
+  //   // console.log(itemInCheck.slice(0, 1));
   // }
 
   return itemsFromLocalStorage.includes(item); // Return True or Fars & Break Function
