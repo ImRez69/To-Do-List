@@ -90,6 +90,7 @@ function addItem(e) {
   formInput.value = ""; // Set Empty Value For Input
   checkUI(); // Run Check UI Function
 }
+
 // Validatin Ckeck Function
 function validationCheck(newItem) {
   switch (true) {
