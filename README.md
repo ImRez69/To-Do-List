@@ -1,6 +1,6 @@
 # To-Do List
 
-A simple and interactive To-Do List web application built with HTML, CSS, and JavaScript. This application allows users to manage their tasks efficiently with features like adding, editing, deleting, and filtering tasks, along with a theme toggle and real-time clock display.
+A simple and interactive To-Do List web application built with HTML, CSS, and JavaScript. This application allows users to manage their tasks efficiently with features like adding, editing, deleting, and filtering tasks, along with a theme toggle, real-time clock display, and improved error handling.
 
 ## Table of Contents
 - [About](#about)
@@ -10,19 +10,19 @@ A simple and interactive To-Do List web application built with HTML, CSS, and Ja
 - [Technologies](#technologies)
 
 ## About
-The To-Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and a custom font (Atma) for a unique look.
+The To-Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and the Atma font for a unique visual style. This updated version includes improved error handling and optimized UI components.
 
 ## Features
-- Add Tasks: Add new tasks with a simple input form.
-- Edit Tasks: Click on a task to edit its content.
-- Delete Tasks: Remove individual tasks with a single click.
-- Clear All Tasks: Delete all tasks at once.
-- Filter Tasks: Search and filter tasks based on input text.
-- Theme Toggle: Switch between dark and light themes, with the preference saved in local storage.
-- Real-Time Clock and Date: Displays the current time and date, updated every second.
-- Persistent Storage: Tasks are saved in the browser's local storage for persistence across sessions.
-- Responsive Design: Optimized for both desktop and mobile devices.
-- Error Handling: Displays error messages for empty inputs or duplicate tasks.
+- **Add Tasks**: Add new tasks with a simple input form.
+- **Edit Tasks**: Click on a task to edit its content.
+- **Delete Tasks**: Remove individual tasks with a single click using a styled remove icon.
+- **Clear All Tasks**: Delete all tasks at once.
+- **Filter Tasks**: Search and filter tasks based on input text.
+- **Theme Toggle**: Switch between dark and light themes, with the preference saved in local storage.
+- **Real-Time Clock and Date**: Displays the current time and date, updated every second.
+- **Persistent Storage**: Tasks are saved in the browser's local storage for persistence across sessions.
+- **Responsive Design**: Optimized for both desktop and mobile devices with a constrained width (`clamp(200px, 90%, 500px)`).
+- **Improved Error Handling**: Displays error messages for empty or duplicate inputs using a streamlined validation system.
 
 ## Installation
 To run the To-Do List application locally, follow these steps:
@@ -42,7 +42,7 @@ No additional dependencies or build steps are required, as the project uses vani
 - Also, you can run `index.html` [Here](https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html).
 
 
-## Usage
+##Usage
 
 Open the application in a web browser.
 Add a Task: Enter a task in the input field and click the "Add Item" button or press Enter.
@@ -53,9 +53,11 @@ Clear All Tasks: Click the "Clear All" button to remove all tasks.
 Toggle Theme: Click the theme button (🌙 or ☀️) to switch between dark and light modes.
 The current time and date are displayed in the header, updated in real-time.
 
-## Technologies
+##Technologies
 
-HTML5: For the structure of the application.
-CSS3: For styling, including responsive design and custom animations.
-JavaScript (Vanilla): For interactivity, local storage, and real-time clock functionality.
+HTML5: For the structure of the application, with semantic elements and improved class-based error handling.
+CSS3: For styling, including responsive design, custom animations, and the Atma font for a unique look.
+JavaScript (Vanilla): For interactivity, local storage, real-time clock, and optimized validation logic using switch statements.
 Atma Font: A custom font for a unique visual style.
+
+
