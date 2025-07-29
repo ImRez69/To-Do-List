@@ -5,4 +5,4 @@ This is an **older version** of the To-Do List web application, created solely f
 
 For the latest and improved version with **better functionality**, please visit the main branch:  
 [To-Do List Main Branch](https://github.com/ImRez69/To-Do-List/tree/main)
-- But you need to run this brnach can run `index.html` [Here](https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html).
+- But you need to run this brnach can run `index.html` [Here](https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/old-version/index.html).
