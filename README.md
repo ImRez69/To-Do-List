@@ -1,6 +1,6 @@
-# To-Do List
+# To Do List
 
-A simple and interactive To-Do List web application built with HTML, CSS, and JavaScript. This application allows users to manage their tasks efficiently with features like adding, editing, deleting, and filtering tasks, along with a theme toggle, real-time clock display, and improved error handling.
+A simple and interactive To Do List web application built with HTML, CSS, and JavaScript. This application allows users to manage their tasks efficiently with features like adding, editing, deleting, and filtering tasks, along with a theme toggle, real-time clock display, and improved error handling.
 
 ## Table of Contents
 - [About](#about)
@@ -10,7 +10,7 @@ A simple and interactive To-Do List web application built with HTML, CSS, and Ja
 - [Technologies](#technologies)
 
 ## About
-The To-Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and the Atma font for a unique visual style. This updated version includes improved error handling and optimized UI components.
+The To Do List is a lightweight, single-page web application designed to help users organize their tasks. It features a clean and responsive interface with a dark/light theme toggle, a real-time clock, and persistent storage using the browser's local storage. The project uses vanilla JavaScript for functionality, custom CSS for styling, and the Atma font for a unique visual style. This updated version includes improved error handling and optimized UI components.
 
 ## Features
 - **Add Tasks**: Add new tasks with a simple input form.
@@ -25,12 +25,12 @@ The To-Do List is a lightweight, single-page web application designed to help us
 - **Improved Error Handling**: Displays error messages for empty or duplicate inputs using a streamlined validation system.
 
 ## Installation
-To run the To-Do List application locally, follow these steps:
+To run the To Do List application locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/ImRez69/To-Do-List.git
-   cd To-Do-List
+   git clone https://github.com/ImRez69/To Do-List.git
+   cd To Do-List
 
 
 Ensure the font file is included:The project uses the Atma-Regular.ttf font, which should be placed in the Font directory. If you don't have the font, you can replace the font reference in style.css with a fallback font like Arial or download the Atma font.
@@ -39,7 +39,7 @@ Open the application:
 
 Open index.html in a web browser (e.g., Chrome, Firefox).  
 No additional dependencies or build steps are required, as the project uses vanilla HTML, CSS, and JavaScript.  
-- Also, you can run `index.html` [Here](https://htmlpreview.github.io/?https://github.com/ImRez69/To-Do-List/blob/main/index.html).
+- Also, you can run `index.html` [Here](https://htmlpreview.github.io/?https://github.com/ImRez69/To Do-List/blob/main/index.html).
 
 
 ##Usage
