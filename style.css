@@ -1,6 +1,6 @@
 @font-face {
   font-family: Atma;
-  src: local("Atma-Regular"), url(./Font/Atma-Regular.ttf) format(truetype);
+  src: local("Atma-Regular"), url(./Source/Font/Atma-Regular.ttf) format(truetype);
 }
 
 * {
