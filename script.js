@@ -94,7 +94,7 @@ function addItem(e) {
 function validationCheck(newItem) {
   switch (true) {
     // Run Always
-    case newItem === "" || newItem.trim() === "":
+    case newItem.trim() === "":
       // If Input Value Is Empty Run It
       errors.forEach((error) => error.classList.remove("show-error")); // Remove All show-error Class From errors
       epmtyInputError.classList.add("show-error"); // Add Class For Showing Duplicate Error
